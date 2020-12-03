@@ -1,0 +1,70 @@
+﻿@page
+@model PatientProfile.Pages.Doctors.IndexModel
+
+@{
+    ViewData["Title"] = "DocList";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+<div class=".section p-3 text-primary">
+    <h1 class="text-light">Doctors List</h1>
+    <p>
+        <a class="btn btn-success text-light" asp-page="Create">Create New</a>
+    </p>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Doctor[0].Photo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Doctor[0].FirstName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Doctor[0].LastName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Doctor[0].Profession)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Doctor[0].Email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Doctor[0].Contact)
+                </th> 
+                <th>
+                    @Html.DisplayName("Actions")
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Doctor)
+            {
+                <tr>
+                    <td>
+                        <img id="docImg" src="@(item.Photo)" asp-append-version="true"  alt="Alternate Text" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Profession)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Contact)
+                    </td>
+                    <td>
+                        <a class="btn btn-primary" asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a class="btn btn-info" asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                        <a class="btn btn-danger" asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

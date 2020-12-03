@@ -1,0 +1,47 @@
+﻿@page
+@model PatientProfile.Pages.MedicalCards.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+
+    <h1>Patient Cards</h1>
+    <p>
+        <a class="text-light btn btn-outline-primary my-3" asp-page="Create">Create New</a>
+    </p>
+    <div class="row">
+
+        @foreach (var item in Model.MedicalCard)
+        {
+            <div class="col col-sm-6 col-md-3 col-lg-3 mb-4">
+                <div class="card">
+                    <!--Card image-->
+                    <div class="view overlay">
+                        <img class="card-img-top" src="~/video/patient-registration-card.jpg" width="100" height="100" alt="Card image cap">
+                        <a href="#!">
+                            <div class="mask rgba-white-slight"></div>
+                        </a>
+                    </div>
+
+                    <!--Card content-->
+                    <div class="card-body">
+
+                        <!--Title-->
+                        <h4 class="card-title">@item.PatientName</h4>
+                        <!--Text-->
+                        <p class="card-text">
+                            @item.PatientStatus;
+                        </p>
+                        <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
+                        <a class="btn btn-primary" asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a class="btn btn-info" asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                        <a class="btn btn-danger" asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                    </div>
+
+                </div>
+                <!-- Card -->
+            </div>
+        }
+    </div>

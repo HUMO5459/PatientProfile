@@ -1,0 +1,61 @@
+﻿@page
+@model PatientProfile.Pages.Doctors.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-4">
+        <h4>Edit Doctor</h4>
+        <hr />
+        <form method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Doctor.FirstName" class="control-label"></label>
+                <input asp-for="Doctor.FirstName" class="form-control" />
+                <span asp-validation-for="Doctor.FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Doctor.LastName" class="control-label"></label>
+                <input asp-for="Doctor.LastName" class="form-control" />
+                <span asp-validation-for="Doctor.LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Doctor.Profession" class="control-label"></label>
+                <input asp-for="Doctor.Profession" class="form-control" />
+                <span asp-validation-for="Doctor.Profession" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Doctor.Email" class="control-label"></label>
+                <input asp-for="Doctor.Email" class="form-control" />
+                <span asp-validation-for="Doctor.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Doctor.Contact" class="control-label"></label>
+                <input asp-for="Doctor.Contact" class="form-control" />
+                <span asp-validation-for="Doctor.Contact" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="file" asp-for="ImageFile" accept="~/img/*" class="form-control-file" />
+            </div>
+            <div class="col-sm-10">
+                <img src="@(Model.Doctor.Photo)" asp-append-version="true" width="200" height="200" alt="Alternate Text" />
+            </div>
+            <input type="hidden" asp-for="Doctor.Id" />
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+                <a class="btn btn-outline-primary" asp-page="./Index">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+   
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

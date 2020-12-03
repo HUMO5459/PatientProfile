@@ -1,0 +1,66 @@
+﻿@page
+@model PatientProfile.Pages.MedicalCards.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+
+<div class="row justify-content-center">
+    <div >
+        <h1>Create new card</h1>
+        <hr />
+        <form method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label class="control-label">Registration Number</label>
+                <input asp-for="MedicalCard.RegNumber" class="form-control" />
+                <span asp-validation-for="MedicalCard.RegNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Registration Date</label>
+                <input type="date" asp-for="MedicalCard.RegDate" class="form-control" />
+                <span asp-validation-for="MedicalCard.RegDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Patient Name</label>
+                <input asp-for="MedicalCard.PatientName" class="form-control" />
+                <span asp-validation-for="MedicalCard.PatientName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Patient Status</label>
+                <input asp-for="MedicalCard.PatientStatus" class="form-control" />
+                <span asp-validation-for="MedicalCard.PatientStatus" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Doctor Name</label>
+                <input asp-for="MedicalCard.DoctorName" class="form-control" />
+                <span asp-validation-for="MedicalCard.DoctorName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Additional files</label><br />
+                <input type="file" asp-for="InputFile"  accept="~/UploadFiles/*" class="custom-file" />
+            </div>
+            <div class="form-group">
+                <label class="control-label">OtherDetails</label>
+                <textarea id="content" asp-for="MedicalCard.OtherDetails"></textarea>
+                <span asp-validation-for="MedicalCard.OtherDetails" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+                <a class="btn btn-primary" asp-page="Index">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+<script>
+    document.addEventListener("DOMContentLoaded", function (event) {
+        CKEDITOR.timestamp = "v=2";
+        var editor = CKEDITOR.replace("content");
+    });
+</script>
+}
